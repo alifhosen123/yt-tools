@@ -1,0 +1,701 @@
+<div class="separator" style="clear: both;"><a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzSfon1rN62uHc-wqnOo3iz5Pea5Cuo3-99w&amp;s" style="display: block; padding: 1em 0px; text-align: center;"><img alt="" border="0" data-original-height="166" data-original-width="303" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzSfon1rN62uHc-wqnOo3iz5Pea5Cuo3-99w&amp;s" /></a></div>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+    <title>ইউটিউব থাম্বনেল টাইটেল জেনারেটর</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></link>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .card h2 {
+            color: #2575fc;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h2 i {
+            background: #e6f0ff;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .upload-area {
+            border: 3px dashed #6a11cb;
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8f9ff;
+        }
+        
+        .upload-area:hover {
+            background: #edf3ff;
+            border-color: #2575fc;
+        }
+        
+        .upload-area i {
+            font-size: 4rem;
+            color: #6a11cb;
+            margin-bottom: 15px;
+        }
+        
+        .upload-area h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .upload-area p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(106, 17, 203, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .result-container {
+            display: none;
+        }
+        
+        .result-item {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #6a11cb;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .result-item h3 {
+            color: #2575fc;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .result-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .result-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            flex: 1;
+            color: #333;
+        }
+        
+        .copy-btn {
+            background: #e6f0ff;
+            color: #2575fc;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #d1e3ff;
+        }
+        
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .loader i {
+            font-size: 3rem;
+            color: #6a11cb;
+            margin-bottom: 20px;
+            animation: spin 1.5s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loader p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        #thumbnailPreview {
+            max-width: 100%;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature i {
+            font-size: 3rem;
+            color: #6a11cb;
+            margin-bottom: 20px;
+            background: #e6f0ff;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+        
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2575fc;
+        }
+        
+        .feature p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .result-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .copy-btn {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ইউটিউব থাম্বনেল টাইটেল জেনারেটর</h1>
+            <p>আপনার থাম্বনেল আপলোড করুন, আমাদের AI সিস্টেম সেটি বিশ্লেষণ করে দেবে এসইও-অপ্টিমাইজড আকর্ষণীয় টাইটেল</p>
+        </header>
+        
+        <main>
+            <div class="card">
+                <h2><i class="fas fa-cloud-upload-alt"></i> থাম্বনেল আপলোড করুন</h2>
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-image"></i>
+                    <h3>থাম্বনেল এখানে ড্রপ করুন</h3>
+                    <p>JPEG, PNG বা JPG ফরম্যাটে থাম্বনেল আপলোড করুন (সর্বোচ্চ 5MB)</p>
+                    <button class="btn" id="uploadBtn"><i class="fas fa-folder-open"></i> ফাইল নির্বাচন করুন</button>
+                    <input accept="image/*" id="thumbnailUpload" style="display: none;" type="file" />
+                </div>
+                <img alt="থাম্বনেল প্রিভিউ" id="thumbnailPreview" />
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-cogs"></i> জেনারেটর সেটিংস</h2>
+                <div style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <div>
+                        <label for="titleCount" style="color: #444444; display: block; font-weight: bold; margin-bottom: 10px;">কয়টি টাইটেল জেনারেট করতে চান?</label>
+                        <input id="titleCount" max="10" min="1" style="width: 100%;" type="range" value="5" />
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                            <span>১টি</span>
+                            <span id="countValue">৫টি</span>
+                            <span>১০টি</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="toneSelector" style="color: #444444; display: block; font-weight: bold; margin-bottom: 10px;">টাইটেলের টোন নির্বাচন করুন</label>
+                        <select id="toneSelector" style="border-radius: 10px; border: 1px solid #ddd; font-size: 1rem; padding: 12px; width: 100%;">
+                            <option value="engaging">আকর্ষণীয় (Engaging)</option>
+                            <option value="professional">পেশাদার (Professional)</option>
+                            <option value="funny">মজাদার (Funny)</option>
+                            <option value="dramatic">নাটকীয় (Dramatic)</option>
+                            <option value="mysterious">রহস্যময় (Mysterious)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" disabled="" id="generateBtn" style="margin-top: 30px; width: 100%;">
+                    <i class="fas fa-magic"></i> টাইটেল জেনারেট করুন
+                </button>
+            </div>
+            
+            <div class="loader" id="loader">
+                <i class="fas fa-spinner"></i>
+                <p>আপনার থাম্বনেল বিশ্লেষণ করে টাইটেল জেনারেট করা হচ্ছে...</p>
+            </div>
+            
+            <div class="card result-container" id="resultContainer">
+                <h2><i class="fas fa-list"></i> জেনারেটেড টাইটেলসমূহ</h2>
+                <div id="results"></div>
+            </div>
+        </main>
+        
+        <div class="feature-grid">
+            <div class="feature">
+                <i class="fas fa-brain"></i>
+                <h3>এআই বিশ্লেষণ</h3>
+                <p>আমাদের উন্নত AI সিস্টেম আপনার থাম্বনেলের প্রতিটি উপাদান বিশ্লেষণ করে সঠিক টাইটেল জেনারেট করে</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>এসইও অপ্টিমাইজড</h3>
+                <p>টাইটেলগুলো সম্পূর্ণ এসইও ফ্রেন্ডলি, যা আপনার ভিডিওর রেঞ্কিং এবং ভিউ বাড়াতে সাহায্য করবে</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-bolt"></i>
+                <h3>দ্রুত জেনারেশন</h3>
+                <p>মাত্র কয়েক সেকেন্ডের মধ্যে আপনি পেয়ে যাবেন একাধিক টাইটেল অপশন</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© ২০২৩ ইউটিউব থাম্বনেল টাইটেল জেনারেটর | সকল অধিকার সংরক্ষিত</p>
+    </footer>
+
+    <script>
+        // DOM elements
+        const uploadArea = document.getElementById('uploadArea');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const fileInput = document.getElementById('thumbnailUpload');
+        const thumbnailPreview = document.getElementById('thumbnailPreview');
+        const generateBtn = document.getElementById('generateBtn');
+        const titleCount = document.getElementById('titleCount');
+        const countValue = document.getElementById('countValue');
+        const toneSelector = document.getElementById('toneSelector');
+        const loader = document.getElementById('loader');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultsDiv = document.getElementById('results');
+        
+        // API configuration
+        const API_KEY = 'AIzaSyCj1Lr-_0NkmXJxLTzkVRrygjXks34wkcs';
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+        
+        // Event listeners
+        uploadBtn.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#2575fc';
+            uploadArea.style.backgroundColor = '#e0ebff';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#6a11cb';
+            uploadArea.style.backgroundColor = '#f8f9ff';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#6a11cb';
+            uploadArea.style.backgroundColor = '#f8f9ff';
+            
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                handleFile(e.target.files[0]);
+            }
+        });
+        
+        titleCount.addEventListener('input', () => {
+            countValue.textContent = `${titleCount.value}টি`;
+        });
+        
+        generateBtn.addEventListener('click', generateTitles);
+        
+        // Handle uploaded file
+        function handleFile(file) {
+            if (!file.type.match('image.*')) {
+                alert('অনুগ্রহ করে একটি ইমেজ ফাইল নির্বাচন করুন (JPEG, PNG, JPG)');
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+                alert('ফাইলের সাইজ 5MB এর বেশি হতে পারবে না');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                thumbnailPreview.src = e.target.result;
+                thumbnailPreview.style.display = 'block';
+                generateBtn.disabled = false;
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // Generate titles function
+        async function generateTitles() {
+            if (!thumbnailPreview.src || thumbnailPreview.src === window.location.href) {
+                alert('অনুগ্রহ করে একটি থাম্বনেল আপলোড করুন');
+                return;
+            }
+            
+            // Show loader and hide results
+            loader.style.display = 'block';
+            resultContainer.style.display = 'none';
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> প্রক্রিয়াধীন...';
+            
+            // Get the base64 image data
+            const base64Data = thumbnailPreview.src.split(',')[1];
+            
+            // Prepare the prompt
+            const count = titleCount.value;
+            const tone = toneSelector.options[toneSelector.selectedIndex].text;
+            
+            const prompt = `আপনি একজন ইউটিউব এসইও বিশেষজ্ঞ। আপনার কাজ হলো প্রদত্ত ইউটিউব থাম্বনেল বিশ্লেষণ করে ${count}টি এসইও-অপ্টিমাইজড, আকর্ষণীয় বাংলা টাইটেল তৈরি করা। 
+            
+            **নির্দেশাবলী:**
+            1. থাম্বনেলে যা আছে তা সঠিকভাবে বিশ্লেষণ করুন
+            2. টাইটেলগুলো ${tone} টোনে তৈরি করুন
+            3. টাইটেলগুলো অবশ্যই বাংলায় হতে হবে
+            4. প্রতিটি টাইটেল 60 অক্ষরের মধ্যে হতে হবে
+            5. ভাইরাল হওয়ার সম্ভাবনা রয়েছে এমন কীওয়ার্ড ব্যবহার করুন
+            
+            **আউটপুট ফরম্যাট (JSON এ প্রদান করুন):**
+            {"titles": ["টাইটেল ১", "টাইটেল ২", "টাইটেল ৩", ...]}`;
+            
+            try {
+                // Create the request payload
+                const payload = {
+                    contents: [
+                        {
+                            parts: [
+                                { text: prompt },
+                                {
+                                    inline_data: {
+                                        mime_type: "image/jpeg",
+                                        data: base64Data
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                };
+                
+                // Send request to Gemini API
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+                
+                const responseData = await response.json();
+                const textResponse = responseData.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                if (!textResponse) {
+                    throw new Error('AI থেকে কোনো উত্তর পাওয়া যায়নি');
+                }
+                
+                // Try to extract JSON from the response
+                const jsonMatch = textResponse.match(/{[\s\S]*}/);
+                if (!jsonMatch) {
+                    throw new Error("AI সঠিক ফরম্যাটে উত্তর দেয়নি");
+                }
+                
+                const titlesData = JSON.parse(jsonMatch[0]);
+                
+                // Display results
+                displayResults(titlesData.titles);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert(`একটি ত্রুটি ঘটেছে: ${error.message}`);
+            } finally {
+                // Hide loader and reset button
+                loader.style.display = 'none';
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '<i class="fas fa-magic"></i> টাইটেল জেনারেট করুন';
+            }
+        }
+        
+        // Display results function
+        function displayResults(titles) {
+            if (!titles || !titles.length) {
+                resultsDiv.innerHTML = '<p>কোনো টাইটেল জেনারেট করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন</p>';
+                resultContainer.style.display = 'block';
+                return;
+            }
+            
+            let html = '';
+            titles.forEach((title, index) => {
+                html += `
+                <div class="result-item">
+                    <h3>টাইটেল #${index + 1}</h3>
+                    <div class="result-content">
+                        <p id="title-${index}">${title}</p>
+                        <button class="copy-btn" onclick="copyToClipboard('title-${index}')">
+                            <i class="fas fa-copy"></i> কপি করুন
+                        </button>
+                    </div>
+                </div>`;
+            });
+            
+            resultsDiv.innerHTML = html;
+            resultContainer.style.display = 'block';
+            
+            // Scroll to results
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Copy to clipboard function
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('টাইটেল কপি করা হয়েছে!');
+            });
+        }
+        
+        // Initialize tone selector
+        toneSelector.value = 'engaging';
+    </script>
+</body>
+</html>
+
+
+
+<html lang="bn">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+    <meta content="AI YouTube Title Generator – থামনেল আপলোড করে মুহূর্তের মধ্যে পারফেক্ট ইউটিউব ভিডিও টাইটেল তৈরি করুন। কনটেন্ট ক্রিয়েটরদের জন্য সেরা ফ্রি এআই টুল।" name="description"></meta>
+    <meta content="YouTube Title Generator, AI Title Maker, থামনেল থেকে টাইটেল, ইউটিউব ভিডিও টাইটেল, ফ্রি ইউটিউব টাইটেল টুল, viral title generator, YouTube SEO, ইউটিউব ভাইরাল টাইটেল" name="keywords"></meta>
+    <meta content="Alif Hosen" name="author"></meta>
+    <title>AI YouTube Title Generator | থামনেল থেকে ইউটিউব ভিডিও টাইটেল</title>
+</head>
+<body>
+    <h1>AI YouTube Title Generator – থামনেল থেকে সেরা ভিডিও টাইটেল তৈরি করুন</h1>
+
+    <p>
+        ইউটিউবে একটি আকর্ষণীয় এবং ভাইরাল টাইটেল আপনার ভিডিওর সফলতার প্রধান চাবিকাঠি। 
+        আমাদের <strong>AI YouTube Title Generator</strong> হলো এমন একটি টুল, যেখানে আপনি শুধুমাত্র আপনার ভিডিওর 
+        <strong>থামনেল আপলোড</strong> করলেই এআই আপনার জন্য পারফেক্ট ভিডিও টাইটেল সাজেস্ট করবে। 
+        এই টুলটি সম্পূর্ণ ফ্রি এবং <strong>YouTube SEO</strong> অপ্টিমাইজড টাইটেল তৈরি করতে সক্ষম, যা আপনার ভিডিওকে সার্চে 
+        উচ্চ র‍্যাঙ্কিং পেতে সাহায্য করবে।
+    </p>
+
+    <h2>AI YouTube Title Generator কী?</h2>
+    <p>
+        <strong>AI YouTube Title Generator</strong> হলো একটি স্মার্ট এআই টুল, যা আপনার ভিডিওর থামনেল বিশ্লেষণ করে ভিডিওর 
+        ধরন, কনটেন্ট এবং বিষয়বস্তু বুঝে নিয়ে একটি <strong>SEO ফ্রেন্ডলি টাইটেল</strong> সাজেস্ট করে। 
+        সাধারণত ইউটিউব ভিডিওর জন্য টাইটেল বাছাই করতে অনেক সময় এবং মাথার খাটুনি লাগে। 
+        আমাদের এই এআই টুল সেই ঝামেলা দূর করে দিয়েছে। 
+        আপনি চাইলে কয়েক সেকেন্ডের মধ্যে আপনার ভিডিওর জন্য <strong>ভাইরাল টাইটেল</strong> পেতে পারেন।
+    </p>
+
+    <h2>এই টুল কিভাবে কাজ করে?</h2>
+    <p>
+        এই <strong>AI Title Maker</strong> ব্যবহার করা অত্যন্ত সহজ। 
+        ইউজার কেবল থামনেল আপলোড করলে, এআই সেটি বিশ্লেষণ করে ভিডিওর ক্যাটাগরি, কীওয়ার্ড এবং কনটেন্ট 
+        অনুমান করে উপযুক্ত টাইটেল তৈরি করে। 
+        এই টাইটেলগুলো ট্রেন্ডিং এবং ইউটিউবের <strong>SEO কিওয়ার্ড</strong> ভিত্তিক হয়ে থাকে। 
+        ফলে আপনার ভিডিও ইউটিউব সার্চ রেজাল্টে সহজেই র‍্যাঙ্ক করতে পারে।
+    </p>
+
+    <h2>আমাদের AI YouTube Title Generator-এর বৈশিষ্ট্য</h2>
+    <ul>
+        <li><strong>এআই-চালিত:</strong> অত্যাধুনিক কৃত্রিম বুদ্ধিমত্তা ব্যবহার করে থামনেল বিশ্লেষণ।</li>
+        <li><strong>SEO ফ্রেন্ডলি:</strong> ইউটিউব সার্চ র‍্যাঙ্কিংয়ের জন্য সঠিক কীওয়ার্ড ব্যবহার।</li>
+        <li><strong>ভাইরাল টাইটেল সাজেশন:</strong> ট্রেন্ডিং কিওয়ার্ড যুক্ত টাইটেল তৈরি।</li>
+        <li><strong>ফ্রি সার্ভিস:</strong> ব্যবহারকারীরা বিনামূল্যে সেরা টাইটেল তৈরি করতে পারবেন।</li>
+        <li><strong>দ্রুত কাজ:</strong> কয়েক সেকেন্ডের মধ্যে টাইটেল তৈরি।</li>
+        <li><strong>ইউজার ফ্রেন্ডলি:</strong> সহজ ইন্টারফেস যা নতুনদের জন্যও উপযোগী।</li>
+    </ul>
+
+    <h2>YouTube SEO কেন গুরুত্বপূর্ণ?</h2>
+    <p>
+        ইউটিউবে প্রতিদিন লক্ষ লক্ষ ভিডিও আপলোড হয়। আপনার ভিডিওকে চোখে পড়ার মতো করে তুলতে 
+        সঠিক টাইটেল নির্বাচন করা অত্যন্ত গুরুত্বপূর্ণ। 
+        <strong>YouTube SEO</strong> মূলত টাইটেল, ডিসক্রিপশন এবং ট্যাগ অপ্টিমাইজেশনের মাধ্যমে আপনার ভিডিওকে 
+        সার্চে তুলে ধরতে সাহায্য করে। 
+        আমাদের <strong>AI YouTube Title Generator</strong> টুল আপনার ভিডিওর জন্য SEO-ফ্রেন্ডলি টাইটেল সাজেস্ট করে, 
+        যা <strong>CTR (Click Through Rate)</strong> বাড়ায় এবং ভিডিওকে ভাইরাল হওয়ার সুযোগ তৈরি করে।
+    </p>
+
+    <h2>কারা এই টুল ব্যবহার করবেন?</h2>
+    <p>
+        এই টুল মূলত কনটেন্ট ক্রিয়েটর, ইউটিউব ভ্লগার, গেমিং চ্যানেল মালিক, শিক্ষামূলক কনটেন্ট নির্মাতা, 
+        ডিজিটাল মার্কেটার এবং নতুন ইউটিউবারদের জন্য উপযোগী। 
+        যারা দ্রুত <strong>আকর্ষণীয় এবং SEO ফ্রেন্ডলি টাইটেল</strong> খুঁজছেন, তারা আমাদের <strong>YouTube Title Maker</strong> ব্যবহার করে উপকৃত হবেন।
+    </p>
+
+    <h2>কেন আমাদের AI Title Maker বেছে নেবেন?</h2>
+    <p>
+        অনেক অনলাইন টুল রয়েছে, কিন্তু আমাদের টুলটি <strong>থামনেল বিশ্লেষণ</strong> করে বুদ্ধিমত্তার সাথে টাইটেল তৈরি করে। 
+        সাধারণ টুলগুলো কেবল কিছু র‍্যান্ডম টাইটেল সাজেস্ট করে, কিন্তু আমাদের এআই ট্রেন্ডিং কীওয়ার্ড এবং আপনার ভিডিওর বিষয়বস্তু মিলিয়ে 
+        <strong>ভাইরাল টাইটেল</strong> সাজেস্ট করে। 
+        এছাড়া, এটি সম্পূর্ণ ফ্রি এবং ব্যবহার করা সহজ।
+    </p>
+
+    <h2>AI YouTube Title Generator ব্যবহারের ধাপ</h2>
+    <ul>
+        <li>ওয়েবসাইটে যান এবং <strong>থামনেল আপলোড</strong> অপশন সিলেক্ট করুন।</li>
+        <li>আপনার ইউটিউব ভিডিওর থামনেল আপলোড করুন।</li>
+        <li>এআই বিশ্লেষণ শেষ হওয়ার জন্য অপেক্ষা করুন।</li>
+        <li>আপনার জন্য সেরা SEO ফ্রেন্ডলি টাইটেল পেয়ে যান।</li>
+    </ul>
+
+    <h2>SEO অপ্টিমাইজড টাইটেল কেন গুরুত্বপূর্ণ?</h2>
+    <p>
+        একটি ভালো টাইটেল শুধু দর্শকের দৃষ্টি আকর্ষণ করে না, বরং সার্চ ইঞ্জিন এবং ইউটিউব অ্যালগরিদমকেও সাহায্য করে। 
+        যদি আপনার টাইটেলে ট্রেন্ডিং কীওয়ার্ড এবং সঠিক SEO ব্যবহার করা হয়, তবে আপনার ভিডিওর 
+        <strong>রিচ এবং ভিউ</strong> বহুগুণে বৃদ্ধি পাবে। 
+        এজন্যই আমাদের <strong>AI YouTube Title Generator</strong> টুল ভিডিওর জন্য সবচেয়ে সঠিক এবং 
+        <strong>SEO ফ্রেন্ডলি</strong> টাইটেল সাজেস্ট করে।
+    </p>
+
+    <h2>ফ্রি ইউটিউব টাইটেল টুলের সুবিধা</h2>
+    <p>
+        আমাদের টুলটি সম্পূর্ণ ফ্রি। যেকোনো নতুন ইউটিউবার যাদের পেইড টুলে বিনিয়োগ করার ক্ষমতা নেই, 
+        তারা এই <strong>Free YouTube Title Tool</strong> ব্যবহার করে সহজেই তাদের ভিডিওর জন্য ভাইরাল টাইটেল তৈরি করতে পারবেন। 
+        তাছাড়া, এই টুলটি বারবার ব্যবহার করা যায় এবং কোনো সীমাবদ্ধতা নেই।
+    </p>
+
+    <h2>ভবিষ্যতের আপডেট</h2>
+    <p>
+        আমরা নিয়মিত আমাদের <strong>AI YouTube Title Generator</strong> টুল আপডেট করছি। 
+        ভবিষ্যতে আরও উন্নত ফিচার, যেমন স্বয়ংক্রিয় ট্যাগ জেনারেশন, ভিডিও ডিসক্রিপশন সাজেশন এবং 
+        ট্রেন্ডিং আইডিয়া জেনারেটর যোগ করা হবে। 
+        আমাদের লক্ষ্য হলো কনটেন্ট ক্রিয়েটরদের জন্য একটি পূর্ণাঙ্গ <strong>YouTube SEO টুল</strong> তৈরি করা।
+    </p>
+
+    <h2>উপসংহার</h2>
+    <p>
+        ইউটিউব ভিডিওর জন্য একটি সঠিক টাইটেল আপনার সাফল্যের ভিত্তি। 
+        আমাদের <strong>AI YouTube Title Generator</strong> টুল কনটেন্ট ক্রিয়েটরদের কাজকে সহজ, দ্রুত এবং কার্যকর করেছে। 
+        আপনি যদি সত্যিই আপনার ভিডিওকে ভাইরাল করতে চান এবং ইউটিউবে একটি শক্তিশালী উপস্থিতি গড়তে চান, 
+        তাহলে আমাদের <strong>YouTube Title Maker</strong> এখনই ব্যবহার করুন।  
+        আজই শুরু করুন এবং দেখুন কিভাবে একটি সঠিক টাইটেল আপনার ভিডিওর ভিউ এবং সাবস্ক্রাইবার বাড়াতে সাহায্য করে।
+    </p>
+
+    <p><strong>এখনই চেষ্টা করুন – থামনেল আপলোড করুন এবং পারফেক্ট টাইটেল পান!</strong></p>
+</body>
+</html>
